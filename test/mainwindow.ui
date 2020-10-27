@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1054</width>
-    <height>557</height>
+    <width>1263</width>
+    <height>491</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>221</width>
-      <height>461</height>
+      <width>161</width>
+      <height>391</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -31,32 +31,19 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>219</width>
-       <height>459</height>
+       <width>159</width>
+       <height>389</height>
       </rect>
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>460</y>
-      <width>89</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Libreria</string>
-    </property>
-   </widget>
    <widget class="QScrollArea" name="scrollArea_2">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>160</x>
       <y>0</y>
-      <width>821</width>
-      <height>461</height>
+      <width>1101</width>
+      <height>391</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -67,22 +54,182 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>819</width>
-       <height>459</height>
+       <width>1099</width>
+       <height>389</height>
       </rect>
      </property>
     </widget>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1054</width>
-     <height>22</height>
-    </rect>
-   </property>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>169</x>
+      <y>396</y>
+      <width>581</width>
+      <height>65</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_4">
+     <item row="0" column="0">
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QSlider" name="slider">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Currently Playning:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Cancion xs</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="1">
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="Play">
+         <property name="text">
+          <string>Play/Stop</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="Show_info">
+         <property name="text">
+          <string>Show Info</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>400</y>
+      <width>110</width>
+      <height>56</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_5">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="Library">
+       <property name="text">
+        <string>Load Library</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QCheckBox" name="checkBox">
+       <property name="text">
+        <string>Paginate</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>390</y>
+      <width>16</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>390</y>
+      <width>20</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>430</y>
+      <width>311</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Odissey Radio</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>762</x>
+      <y>392</y>
+      <width>453</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="BottonAtras">
+       <property name="text">
+        <string>&lt;-</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="pagina1">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="pagina2">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QPushButton" name="pagina3">
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <widget class="QPushButton" name="ButtonAdelante">
+       <property name="text">
+        <string>-&gt;</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

@@ -8,6 +8,8 @@
 #include <QDebug>
 #include <string>
 #include <QMediaPlayer>
+#include <administrador.h>
+
 using namespace std;
 
 QT_BEGIN_NAMESPACE
@@ -20,14 +22,14 @@ class MainWindow : public QMainWindow{
     Q_OBJECT
 
 public:
-
     explicit MainWindow(QWidget *parent = nullptr);
     virtual ~MainWindow();
     QPushButton* createBotton(int i);
-    void accionButton(int cont);
+    void meterInfo(vector<musica> data,int inicio, int limite);
     void mostrar(QString file,QString cancion);
     void ReajustarPagina();
     void eliminarLayout();
+
 private slots:
 
     void on_positionChanged(qint64 position);
@@ -44,8 +46,8 @@ private slots:
     void on_Show_info_clicked();
 
 private:
+    Administrador *admi;
     int nivel=0;
-    int pivote=2;
     int cont=1;
     bool playsong=true;
     bool paginacionON=true;

@@ -17,16 +17,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     administrador.cpp \
-    linkedlist.cpp \
     main.cpp \
-    mainwindow.cpp \
-    nodo.cpp
+    mainwindow.cpp
 
 HEADERS += \
     administrador.h \
-    linkedlist.h \
-    mainwindow.h \
-    nodo.h
+    mainwindow.h
 
 FORMS += \
     mainwindow.ui
@@ -35,6 +31,3 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-DISTFILES += \
-    ../Resorces/play.png

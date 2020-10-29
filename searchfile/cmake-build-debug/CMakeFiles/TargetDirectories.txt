@@ -1,3 +1,3 @@
-/home/gretchell/CLionProjects/searchfile/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/gretchell/CLionProjects/searchfile/cmake-build-debug/CMakeFiles/searchfile.dir
-/home/gretchell/CLionProjects/searchfile/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/aldo/Documentos/Proyecto 1/searchfile/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/aldo/Documentos/Proyecto 1/searchfile/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/aldo/Documentos/Proyecto 1/searchfile/cmake-build-debug/CMakeFiles/searchfile.dir

@@ -19,9 +19,9 @@ int main() {
     int columna = 1;
     int cont = 0;
     int aux = cont;
-    std::ifstream data("/home/gretchell/Downloads/fma_metadata/raw_tracks.csv");
+    std::ifstream data("/home/aldo/Descargas/metadata/raw_tracks.csv");
     std::string line;
-
+    int *a= static_cast<int *>(malloc(sizeof(int)));
     while(std::getline(data,line)) {
         musica track;
         std::stringstream lineStream(line);

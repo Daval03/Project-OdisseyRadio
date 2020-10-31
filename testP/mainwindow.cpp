@@ -3,11 +3,18 @@
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),ui(new Ui::MainWindow){
     ui->setupUi(this);
     this->admi=new Administrador();
+<<<<<<< HEAD:testP/mainwindow.cpp
+    this->admi->pivote=1;
+    this->admi->limite=2;
+    this->admi->inicio=0;
+    this->admi->getStrings(0,30);
+=======
     //admi->doMath(1,30);
     this->admi->pivote=1;
     this->admi->limite=2;
     this->admi->inicio=0;
     this->admi->getData(0,30);
+>>>>>>> 06db51a059ca40faf93c99259cf11271b741f1eb:test/mainwindow.cpp
 
     mMediaPlayer=new QMediaPlayer(this);
     layout1=new QVBoxLayout();
@@ -42,7 +49,11 @@ void MainWindow::meterInfo(vector<musica> tracks, int inicio, int limite){
         QHBoxLayout *foo=new QHBoxLayout();
         QLabel *label2 = new QLabel(QString::fromStdString(tracks[i].artist_name));
         QLabel *label = new QLabel(QString::fromStdString(tracks[i].track_title));
+<<<<<<< HEAD:testP/mainwindow.cpp
+        QLabel *label3 = new QLabel(QString::fromStdString(tracks[i].genero));
+=======
         QLabel *label3 = new QLabel(QString::fromStdString(tracks[i].track_duration));
+>>>>>>> 06db51a059ca40faf93c99259cf11271b741f1eb:test/mainwindow.cpp
 
         QPushButton *button=createBotton(i);
         button->setText("Play");
@@ -85,7 +96,11 @@ void MainWindow::on_BottonAtras_clicked(){
     }ReajustarPagina();
 }
 void MainWindow::on_ButtonAdelante_clicked(){
+<<<<<<< HEAD:testP/mainwindow.cpp
+    if(nivel<21){
+=======
     if(nivel<20){
+>>>>>>> 06db51a059ca40faf93c99259cf11271b741f1eb:test/mainwindow.cpp
         this->nivel++;
     }ReajustarPagina();
 }
@@ -94,12 +109,28 @@ void MainWindow::on_pagina1_clicked(){
     eliminarLayout();
     if(admi->pivote-1==(3*nivel)){
         meterInfo(admi->tracks,0,10);
+<<<<<<< HEAD:testP/mainwindow.cpp
+    }
+    else if(admi->pivote+1==(3*nivel)){
+        meterInfo(admi->tracks,20,30);
+    }
+    else if(admi->pivote==3*nivel){
+        qDebug()<<"caso base";
+        meterInfo(admi->tracks,10,20);
+    }
+    else if(admi->pivote==0){
+        this->admi->doMath(1,30);
+        meterInfo(admi->tracks,0,10);
+    }
+    else{
+=======
     }else if(admi->pivote+1==(3*nivel)){
         meterInfo(admi->tracks,20,30);
     }else if(admi->pivote==3*nivel){
         qDebug()<<"caso base";
         meterInfo(admi->tracks,10,20);
     }else{
+>>>>>>> 06db51a059ca40faf93c99259cf11271b741f1eb:test/mainwindow.cpp
         qDebug()<<"Recalcular";
         this->admi->doMath(3*nivel,30);
         meterInfo(admi->tracks,10,20);
@@ -108,6 +139,24 @@ void MainWindow::on_pagina1_clicked(){
 void MainWindow::on_pagina2_clicked(){
     eliminarLayout();
     if(admi->pivote-1==(1+(3*nivel))){
+<<<<<<< HEAD:testP/mainwindow.cpp
+        qDebug()<<"Izq";
+        meterInfo(admi->tracks,0,10);
+    }
+    else if(admi->pivote+1==(1+(3*nivel))){
+        qDebug()<<"Der";
+        meterInfo(admi->tracks,20,30);
+    }
+    else if(admi->pivote==1+(3*nivel)){
+        qDebug()<<"caso base";
+        meterInfo(admi->tracks,10,20);
+    }else if(admi->pivote==1){
+        meterInfo(admi->tracks,10,20);
+    }else{
+        qDebug()<<"Recalcular";
+        this->admi->doMath(1+(3*nivel),30);
+        qDebug()<<admi->tracks.size();
+=======
         meterInfo(admi->tracks,0,10);
     }else if(admi->pivote+1==(1+(3*nivel))){
         meterInfo(admi->tracks,20,30);
@@ -117,12 +166,27 @@ void MainWindow::on_pagina2_clicked(){
     }else{
         qDebug()<<"Recalcular";
         this->admi->doMath(1+(3*nivel),30);
+>>>>>>> 06db51a059ca40faf93c99259cf11271b741f1eb:test/mainwindow.cpp
         meterInfo(admi->tracks,10,20);
     }
 }
 void MainWindow::on_pagina3_clicked(){
     eliminarLayout();
     if(admi->pivote-1==(2+(3*nivel))){
+<<<<<<< HEAD:testP/mainwindow.cpp
+        qDebug()<<"Izq";
+        meterInfo(admi->tracks,0,10);
+    }
+    else if(admi->pivote+1==(2+(3*nivel))){
+        qDebug()<<"Der";
+        meterInfo(admi->tracks,20,30);
+    }
+    else if(admi->pivote==2+(3*nivel)){
+        qDebug()<<"caso base";
+        meterInfo(admi->tracks,10,20);
+    }
+    else{
+=======
         meterInfo(admi->tracks,0,10);
     }else if(admi->pivote+1==(2+(3*nivel))){
         meterInfo(admi->tracks,20,30);
@@ -130,6 +194,7 @@ void MainWindow::on_pagina3_clicked(){
         qDebug()<<"caso base";
         meterInfo(admi->tracks,10,20);
     }else{
+>>>>>>> 06db51a059ca40faf93c99259cf11271b741f1eb:test/mainwindow.cpp
         qDebug()<<"Recalcular";
         this->admi->doMath(2+(3*nivel),30);
         meterInfo(admi->tracks,10,20);
@@ -138,12 +203,15 @@ void MainWindow::on_pagina3_clicked(){
 
 void MainWindow::on_Library_clicked(){
     qDebug()<<"Hola mundo";
+<<<<<<< HEAD:testP/mainwindow.cpp
+=======
 //    QPushButton *button=createBotton(cont);
 //    button->setText(tr("Libreria %1").arg(cont));
 //    QObject::connect(button,&QPushButton::clicked,this,[=](){
 //        meterInfo(admi->tracks,10,19);
 //    });layout1->addWidget(button);
 //    cont++;
+>>>>>>> 06db51a059ca40faf93c99259cf11271b741f1eb:test/mainwindow.cpp
 }
 
 void MainWindow::on_Play_clicked(){

@@ -25,8 +25,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),ui(new Ui::MainWind
     QObject::connect(button,&QPushButton::clicked,this,[=](){
         meterInfo(admi->tracks,10,20);
     });layout1->addWidget(button);
-
-    ReajustarPagina();
+    reajustarPagina();
 }
 MainWindow::~MainWindow(){
     delete ui;
@@ -42,7 +41,7 @@ void MainWindow::meterInfo(vector<musica> tracks, int inicio, int limite){
         QLabel *label3 = new QLabel(QString::fromStdString(tracks[i].genero));
         QLabel *label2 = new QLabel();
         QLabel *label = new QLabel();
-        if(tracks[i].artist_name.size()>30){
+        if(tracks[i].artist_name.size()>20){
             label2->setText("Datos corrompidos");
         }else{
             label2->setText(QString::fromStdString(tracks[i].artist_name));
@@ -64,9 +63,11 @@ void MainWindow::meterInfo(vector<musica> tracks, int inicio, int limite){
         foo->addWidget(label2);
         foo->addWidget(label3);
         foo->addWidget(button);
-//        QObject::connect(button,&QPushButton::clicked,this,[=](){
-//            this->mostrar(filesong,cancion1);
-//        });
+        QObject::connect(button,&QPushButton::clicked,this,[=](){
+            QString rutaxd="/home/aldo/Escritorio/Canciones/";
+            rutaxd.append(QString::fromStdString(tracks[i].ruta_cancion));
+            this->mostrar(rutaxd,QString::fromStdString(tracks[i].track_title));
+        });
         layout2->addLayout(foo);
     }
 }
@@ -75,7 +76,7 @@ void MainWindow::mostrar(QString file,QString cancion){
     mMediaPlayer->setMedia(QUrl::fromLocalFile(file));
     ui->label_2->setText(cancion);
 }
-void MainWindow::ReajustarPagina(){
+void MainWindow::reajustarPagina(){
     ui->pagina1->setText(QString::number(3*nivel));
     ui->pagina2->setText(QString::number(1+(3*nivel)));
     ui->pagina3->setText(QString::number(2+(3*nivel)));
@@ -90,12 +91,12 @@ void MainWindow::on_durationChanged(qint64 position){
 void MainWindow::on_BottonAtras_clicked(){
     if(nivel!=0){
         this->nivel--;
-    }ReajustarPagina();
+    }reajustarPagina();
 }
 void MainWindow::on_ButtonAdelante_clicked(){
-    if(nivel<21){
+    if(nivel<44){
         this->nivel++;
-    }ReajustarPagina();
+    }reajustarPagina();
 }
 
 void MainWindow::on_pagina1_clicked(){
@@ -138,7 +139,6 @@ void MainWindow::on_pagina2_clicked(){
     }else{
         qDebug()<<"Recalcular";
         this->admi->doMath(1+(3*nivel),30);
-        qDebug()<<admi->tracks.size();
         meterInfo(admi->tracks,10,20);
     }
 }
@@ -189,8 +189,8 @@ void MainWindow::on_checkBox_clicked(){
         ui->ButtonAdelante->hide();
         paginacionON=false;
         this->admi->resetData(30);
-        this->admi->getStrings(0,620);
-        meterInfo(admi->tracks,0,620);
+        this->admi->getStrings(0,1382);
+        meterInfo(admi->tracks,0,1382);
         qDebug()<<"Bien";
     }else{
         ui->pagina1->show();
@@ -199,7 +199,9 @@ void MainWindow::on_checkBox_clicked(){
         ui->BottonAtras->show();
         ui->ButtonAdelante->show();
         paginacionON=true;
-        admi->doMath(1,620);
+        admi->doMath(1,1382);
+        this->nivel=0;
+        reajustarPagina();
         meterInfo(admi->tracks,10,19);
     }
 }

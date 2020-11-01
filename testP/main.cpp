@@ -11,10 +11,14 @@ int main(int argc, char *argv[]){
 //#include <QDebug>
 //int main(){
 //    Administrador *admi=new Administrador();
-
-//    admi->getStrings(0,620);
+//    admi->getStrings(1320,1350);
 //    cout<<" ";
 //    cout<<admi->tracks.size();
+//    admi->read_directory(1320,1350);
+
+
+//    cout<<" ";
+//    cout<<admi->tracks[29].ruta_cancion;
 //    admi->resetData(620);
 //    cout<<" ";
 //    cout<<admi->tracks.size();

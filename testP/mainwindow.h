@@ -27,7 +27,7 @@ public:
     QPushButton* createBotton(int i);
     void meterInfo(vector<musica> data,int inicio, int limite);
     void mostrar(QString file,QString cancion);
-    void ReajustarPagina();
+    void reajustarPagina();
     void eliminarLayout();
 
 private slots:

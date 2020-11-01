@@ -39,9 +39,18 @@ QPushButton* MainWindow::createBotton(int i){
 void MainWindow::meterInfo(vector<musica> tracks, int inicio, int limite){
     for(int i=inicio;i<limite;i++){
         QHBoxLayout *foo=new QHBoxLayout();
-        QLabel *label2 = new QLabel(QString::fromStdString(tracks[i].artist_name));
-        QLabel *label = new QLabel(QString::fromStdString(tracks[i].track_title));
         QLabel *label3 = new QLabel(QString::fromStdString(tracks[i].genero));
+        QLabel *label2 = new QLabel();
+        QLabel *label = new QLabel();
+        if(tracks[i].artist_name.size()>30){
+            label2->setText("Datos corrompidos");
+        }else{
+            label2->setText(QString::fromStdString(tracks[i].artist_name));
+        }if(tracks[i].track_title.size()<40){
+            label->setText(QString::fromStdString(tracks[i].track_title));
+        }else{
+            label->setText("Datos corrompidos");
+        }
 
         QPushButton *button=createBotton(i);
         button->setText("Play");
@@ -179,8 +188,8 @@ void MainWindow::on_checkBox_clicked(){
         ui->BottonAtras->hide();
         ui->ButtonAdelante->hide();
         paginacionON=false;
-        admi->resetData(30);
-        admi->getData2();
+        this->admi->resetData(30);
+        this->admi->getStrings(0,620);
         meterInfo(admi->tracks,0,620);
         qDebug()<<"Bien";
     }else{
@@ -194,7 +203,6 @@ void MainWindow::on_checkBox_clicked(){
         meterInfo(admi->tracks,10,19);
     }
 }
-
 void MainWindow::eliminarLayout(){
     while(!layout2->isEmpty()) {
         QLayout *hb = layout2->takeAt(0)->layout();

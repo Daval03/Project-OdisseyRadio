@@ -11,10 +11,10 @@ int main(int argc, char *argv[]){
 //#include <QDebug>
 //int main(){
 //    Administrador *admi=new Administrador();
-//    admi->getStrings(1320,1350);
+//    admi->getStrings(0,30);
 //    cout<<" ";
-//    cout<<admi->tracks.size();
-//    admi->read_directory(1320,1350);
+    //cout<<admi->tracks.size();
+    //admi->read_directory(1320,1350);
 
 
 //    cout<<" ";
@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
 //    for(int i=0;i<30;i++){
 //        cout<<i;
 //        cout<<": ";
-//        cout<<admi->tracks.operator[](i).track_title;
+//        cout<<admi->tracks.operator[](i).ruta_cancion;
 //        cout<<"\n";
 //    }
 //}

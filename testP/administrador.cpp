@@ -36,7 +36,7 @@ void Administrador::getStrings(int inicio,int limite){
 void Administrador::read_directory(int inicio,int limite){
     DIR* dirp = opendir("/home/aldo/Escritorio/Canciones");
     struct dirent * dp;
-    int i=1;
+    int i=0;
     int h=0;
     while ((dp = readdir(dirp)) != nullptr) {
         if(inicio<i && i<=limite){

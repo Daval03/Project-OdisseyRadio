@@ -9,7 +9,7 @@
 #include <string>
 #include <QMediaPlayer>
 #include <administrador.h>
-
+#include <factoryui.h>
 using namespace std;
 
 QT_BEGIN_NAMESPACE
@@ -47,6 +47,7 @@ private slots:
 
 private:
     Administrador *admi;
+    FactoryUi *factory_method;
     int nivel=0;
     int cont=1;
     bool playsong=true;
@@ -54,13 +55,6 @@ private:
     QVBoxLayout *layout1;
     QVBoxLayout *layout2;
     Ui::MainWindow *ui;
-    QMediaPlayer *mMediaPlayer;
-
-    //Ejemplo cambiar rutas para ejemplos
-
-    QString filesong2="/home/aldo/Escritorio/From-Nowhere-SertOne-Remix.mp3";
-    QString filesong="/home/aldo/Escritorio/JoJos Bizarre Adventure Openings 1-9 Full.mp3";
-    QString cancion1="JoJos Bizarre Adventure Openings";
-    QString cancion2="From Nowhere SertOne Remix";
+    QMediaPlayer *mMediaPlayer;;
 };
 #endif // MAINWINDOW_H

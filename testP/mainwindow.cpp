@@ -8,23 +8,29 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),ui(new Ui::MainWind
     this->admi->inicio=0;
     this->admi->getStrings(0,30);
 
-    mMediaPlayer=new QMediaPlayer(this);
-    layout1=new QVBoxLayout();
-    layout2=new QVBoxLayout();
+    mMediaPlayer=factory_method->createMediaPlay();
+    layout1=factory_method->createLayoutV();
+    layout2=factory_method->createLayoutV();
+
     ui->scrollContents->setLayout(layout1);
     ui->scrollContents2->setLayout(layout2);
     ui->scrollArea->setBackgroundRole(QPalette::Dark);
     ui->scrollArea_2->setBackgroundRole(QPalette::Dark);
-    QFont *font=new QFont("Arial",20);
+
+    QFont *font=factory_method->createFont();
+    font->setPointSize(22);
+    font->setStyleName("Arial");
+            //new QFont("Arial",22);
     ui->label_3->setFont(*font);
     connect(mMediaPlayer, &QMediaPlayer::positionChanged,this,&MainWindow::on_positionChanged);
     connect(mMediaPlayer, &QMediaPlayer::durationChanged,this,&MainWindow::on_durationChanged);
 
-    QPushButton *button=createBotton(cont);
-    button->setText(tr("Libreria %1").arg(cont));
+    QPushButton *button = factory_method->createButton();
+    button->setText("All tracks");
     QObject::connect(button,&QPushButton::clicked,this,[=](){
         meterInfo(admi->tracks,10,20);
-    });layout1->addWidget(button);
+    });
+    layout1->addWidget(button);
     reajustarPagina();
 }
 MainWindow::~MainWindow(){
@@ -34,13 +40,14 @@ QPushButton* MainWindow::createBotton(int i){
     QPushButton* button = new QPushButton(tr("Button%1").arg(i),this);
     return button;
 }
-
 void MainWindow::meterInfo(vector<musica> tracks, int inicio, int limite){
     for(int i=inicio;i<limite;i++){
-        QHBoxLayout *foo=new QHBoxLayout();
-        QLabel *label3 = new QLabel(QString::fromStdString(tracks[i].genero));
-        QLabel *label2 = new QLabel();
-        QLabel *label = new QLabel();
+        QHBoxLayout *foo= factory_method->createLayoutH();
+        QLabel *label3 =factory_method->createLabel();
+        QLabel *label2 = factory_method->createLabel();
+        QLabel *label = factory_method->createLabel();
+        label3->setText(QString::fromStdString(tracks[i].genero));
+
         if(tracks[i].artist_name.size()>20){
             label2->setText("Datos corrompidos");
         }else{
@@ -50,8 +57,8 @@ void MainWindow::meterInfo(vector<musica> tracks, int inicio, int limite){
         }else{
             label->setText("Datos corrompidos");
         }
+        QPushButton *button=factory_method->createButton();
 
-        QPushButton *button=createBotton(i);
         button->setText("Play");
 //        button->setText("");//.../Resorces/play.png
 //        QPixmap pixmap("/home/aldo/Documentos/Proyecto 1/Resorces/play.png");//Cambiar ruta
@@ -63,6 +70,7 @@ void MainWindow::meterInfo(vector<musica> tracks, int inicio, int limite){
         foo->addWidget(label2);
         foo->addWidget(label3);
         foo->addWidget(button);
+
         QObject::connect(button,&QPushButton::clicked,this,[=](){
             QString rutaxd="/home/aldo/Escritorio/Canciones/";
             rutaxd.append(QString::fromStdString(tracks[i].ruta_cancion));
@@ -111,7 +119,7 @@ void MainWindow::on_pagina1_clicked(){
         qDebug()<<"caso base";
         meterInfo(admi->tracks,10,20);
     }
-    else if(admi->pivote==0){
+    else if(3*nivel==0){
         this->admi->doMath(1,30);
         meterInfo(admi->tracks,0,10);
     }
@@ -134,7 +142,7 @@ void MainWindow::on_pagina2_clicked(){
     else if(admi->pivote==1+(3*nivel)){
         qDebug()<<"caso base";
         meterInfo(admi->tracks,10,20);
-    }else if(admi->pivote==1){
+    }else if(3*nivel==0){
         meterInfo(admi->tracks,10,20);
     }else{
         qDebug()<<"Recalcular";

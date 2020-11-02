@@ -17,11 +17,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     administrador.cpp \
+    factoryui.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     administrador.h \
+    factoryui.h \
     mainwindow.h
 
 FORMS += \

@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),ui(new Ui::MainWind
     this->admi->limite=2;
     this->admi->inicio=0;
     this->admi->getStrings(0,30);
+    this->msgBox= factory_method->createMessageBox();
+    this->msgBox->setText("Info extra de la cancion");
 
     mMediaPlayer=factory_method->createMediaPlay();
     layout1=factory_method->createLayoutV();
@@ -20,8 +22,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),ui(new Ui::MainWind
     QFont *font=factory_method->createFont();
     font->setPointSize(22);
     font->setStyleName("Arial");
-            //new QFont("Arial",22);
     ui->label_3->setFont(*font);
+
     connect(mMediaPlayer, &QMediaPlayer::positionChanged,this,&MainWindow::on_positionChanged);
     connect(mMediaPlayer, &QMediaPlayer::durationChanged,this,&MainWindow::on_durationChanged);
 
@@ -36,10 +38,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),ui(new Ui::MainWind
 MainWindow::~MainWindow(){
     delete ui;
 }
-QPushButton* MainWindow::createBotton(int i){
-    QPushButton* button = new QPushButton(tr("Button%1").arg(i),this);
-    return button;
-}
 void MainWindow::meterInfo(vector<musica> tracks, int inicio, int limite){
     for(int i=inicio;i<limite;i++){
         QHBoxLayout *foo= factory_method->createLayoutH();
@@ -48,24 +46,19 @@ void MainWindow::meterInfo(vector<musica> tracks, int inicio, int limite){
         QLabel *label = factory_method->createLabel();
         label3->setText(QString::fromStdString(tracks[i].genero));
 
-        if(tracks[i].artist_name.size()>20){
+        if(tracks[i].artist_name.size()>40){
             label2->setText("Datos corrompidos");
         }else{
             label2->setText(QString::fromStdString(tracks[i].artist_name));
-        }if(tracks[i].track_title.size()<40){
-            label->setText(QString::fromStdString(tracks[i].track_title));
-        }else{
+        }
+
+        if(tracks[i].track_title.size()>40){
             label->setText("Datos corrompidos");
+        }else{
+            label->setText(QString::fromStdString(tracks[i].track_title));
         }
         QPushButton *button=factory_method->createButton();
-
         button->setText("Play");
-//        button->setText("");//.../Resorces/play.png
-//        QPixmap pixmap("/home/aldo/Documentos/Proyecto 1/Resorces/play.png");//Cambiar ruta
-//        QIcon ButtonIcon(pixmap);
-//        button->setIcon(ButtonIcon);
-//        button->setIconSize(button->rect().size());
-
         foo->addWidget(label);
         foo->addWidget(label2);
         foo->addWidget(label3);
@@ -74,15 +67,17 @@ void MainWindow::meterInfo(vector<musica> tracks, int inicio, int limite){
         QObject::connect(button,&QPushButton::clicked,this,[=](){
             QString rutaxd="/home/aldo/Escritorio/Canciones/";
             rutaxd.append(QString::fromStdString(tracks[i].ruta_cancion));
-            this->mostrar(rutaxd,QString::fromStdString(tracks[i].track_title));
+            this->mostrar(rutaxd,tracks[i]);
         });
         layout2->addLayout(foo);
     }
 }
 
-void MainWindow::mostrar(QString file,QString cancion){
+void MainWindow::mostrar(QString file,musica cancion){
     mMediaPlayer->setMedia(QUrl::fromLocalFile(file));
-    ui->label_2->setText(cancion);
+    ui->label_2->setText(QString::fromStdString(cancion.track_title));
+    this->res=makeString(cancion);
+
 }
 void MainWindow::reajustarPagina(){
     ui->pagina1->setText(QString::number(3*nivel));
@@ -223,4 +218,31 @@ void MainWindow::eliminarLayout(){
         delete hb;
     }
 }
-void MainWindow::on_Show_info_clicked(){}
+
+QString MainWindow::makeString(musica cancion){
+    this->res.clear();
+
+    this->res.append("Album: ");
+    this->res.append(QString::fromStdString(cancion.album_name)+"\n");
+
+    this->res.append("Artista: ");
+    this->res.append(QString::fromStdString(cancion.artist_name)+"\n");
+
+    this->res.append("Cancion: ");
+    this->res.append(QString::fromStdString(cancion.track_title)+"\n");
+
+    this->res.append("Idioma: ");
+    this->res.append(QString::fromStdString(cancion.idioma)+"\n");
+
+    this->res.append("Genero: ");
+    this->res.append(QString::fromStdString(cancion.genero)+"\n");
+
+    this->res.append("Interes de la cancion: ");
+    this->res.append(QString::fromStdString(cancion.track_interest)+"\n");
+
+    return res;
+}
+void MainWindow::on_Show_info_clicked(){
+    msgBox->setInformativeText(res);
+    msgBox->exec();
+}

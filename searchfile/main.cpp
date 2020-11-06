@@ -1,72 +1,37 @@
 #include <iostream>
-#include <sstream>
-#include <fstream>
 #include <string>
-#include <vector>
-
 using namespace std;
-
-struct musica
-{
-    std::string track_title;
-    std::string artist_name;
-    std::string track_duration;
-};
-
-int main() {
-    vector<musica> tracks;
-    int linea = 0;
-    int columna = 1;
-    int cont = 0;
-    int aux = cont;
-    std::ifstream data("/home/aldo/Descargas/metadata/raw_tracks.csv");
-    std::string line;
-    int *a= static_cast<int *>(malloc(sizeof(int)));
-    while(std::getline(data,line)) {
-        musica track;
-        std::stringstream lineStream(line);
-        std::string cell;
-        linea++;
-        while(std::getline(lineStream,cell, ',')) {
-            if (linea == 1) {
-                linea++;
-                break;
-            }
-            else if (cont != 0) {
-                cont++;
-                if (cell.find("/'}]") != cell.npos) {
-                    cont--;
-                    aux = cont;
-                    cont = 0;
-                }
-            }
-            else if (columna == 6) {
-                track.artist_name = cell;
-            }
-            else if (columna == 23){
-                track.track_duration = cell;
-            }
-            else if (columna == 28){
-                cont++;
-            }
-            else if (columna == 38 + aux){
-                track.track_title = cell;
-            }
-            else if (columna == 40 + aux){
-                break;
-            }
-            columna++;
-        }
-        if(track.track_title != "" && track.artist_name != "" && track.track_duration != ""){
-            tracks.push_back(track);
-            std::cout << "Titulo: " + track.track_title + "; Name: " + track.artist_name + "; Duration: " + track.track_duration << std::endl;
-        }
-        columna = 1;
-        if (linea == 650) {
-            std::cout << tracks.size() << std::endl;
-            std::cout << tracks[90].track_duration << std::endl;
-            break;
-        }
-    }
+#include <stdio.h>
+//int main(){
+//    int arr[] = {10, 20, 30, 40, 50, 60};
+//    int *ptr1 = arr;
+//    int *ptr2 = arr + 5;
+//    //printf("Number of elements between two pointer are: %d.",(ptr2 - ptr1));
+//    //printf("Number of bytes between two pointers are: %d",(char*)ptr2 - (char*) ptr1);//5*sizeof(int)/sizeof(char)
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//    char *ptr = "GeeksQuiz";
+//    cout<<*(ptr+3);
+//}
+void swap(int *px, int *py){
+    *px = *px - *py;
+    *py = *px + *py;
+    *px = *py - *px;
 }
-
+int f(int x, int *py, int **ppz){
+    int y, z;
+    **ppz += 1;//**pz=5
+    z = **ppz;//z=5 *py=5
+    *py += 2;//*py=7
+    y = *py;//y=7
+    x += 3;//x=7
+    return x + y + z;//5+6+7
+}
+int main(){
+    int c, *b, **a;
+    c = 4;
+    b = &c;//*b=4
+    a = &b;//**a=4
+    //cout<<**a;
+    printf("%d ", f(c, b, a));
+    return 0;
+}

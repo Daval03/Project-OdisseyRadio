@@ -17,7 +17,14 @@ struct musica{
     string artist_name;
     string ruta_cancion;
     string genero;
+    string album_name;
+    string idioma;
+    string track_interest;
+
     void deleteClass(){
+        track_interest.clear();
+        idioma.clear();
+        album_name.clear();
         track_title.clear();
         artist_name.clear();
         ruta_cancion.clear();
@@ -26,19 +33,13 @@ struct musica{
 };
 class Administrador{
 private:
-    int cont;
-    int aux;
     string line;
-    int i;
-    int linea;
-
     int j;
 public:
-    void filtrado();
-
     int pivote;
     int inicio;
     int limite;
+
     vector<musica> tracks;
 
     Administrador();
@@ -46,10 +47,6 @@ public:
     void doMath(int pivote, int modo);
     void resetData(int limite);
     void read_directory(int inicio,int limite);
-
-    void getData2();
-    void modoLibre();
-    void getData(int inicio,int fin);
 };
 
 #endif // ADMINISTRADOR_H

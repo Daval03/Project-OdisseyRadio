@@ -9,6 +9,7 @@
 class FactoryUi{
 public:
     FactoryUi();
+    QMessageBox *createMessageBox();
     QMediaPlayer *createMediaPlay();
     QPushButton *createButton();
     QVBoxLayout *createLayoutV();

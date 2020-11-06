@@ -20,3 +20,6 @@ QLabel *FactoryUi::createLabel(){
 QMediaPlayer *FactoryUi::createMediaPlay(){
     return new QMediaPlayer();
 }
+QMessageBox *FactoryUi::createMessageBox(){
+    return new QMessageBox();
+}

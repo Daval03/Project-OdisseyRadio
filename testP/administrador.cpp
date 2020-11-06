@@ -1,9 +1,5 @@
 #include "administrador.h"
 Administrador::Administrador(){
-    this->i=1;
-    this->linea=0;
-    this->cont = 0;
-    this->aux = cont;
     this->line="";
     this->j=1;
 }
@@ -12,15 +8,21 @@ void Administrador::getStrings(int inicio,int limite){
     while(std::getline(file,line)){
         if(inicio<j && j<=limite){
             QString answer= QString::fromStdString(line);
-            QStringList list = answer.split(',', QString::SkipEmptyParts);
+            QStringList list = answer.split(",", QString::SkipEmptyParts);
+            int largo=list.size();
+
             musica track;
-            if(list.size()>23){
-                track.track_title=list.at(list.size()-2).toLocal8Bit().constData();
+            track.idioma="en";
+            track.track_interest=list.at(largo-6).toLocal8Bit().constData();
+            track.album_name=list.at(2).toLocal8Bit().constData();
+            if(largo>23){
+                track.track_title=list.at(largo-2).toLocal8Bit().constData();
                 track.artist_name=list.at(5).toLocal8Bit().constData();
             }else{
                 track.track_title="Sin data";
                 track.track_title="Sin data";
-            }QStringList list2 = answer.split("genre_title",QString::SkipEmptyParts);
+            }
+            QStringList list2 = answer.split("genre_title",QString::SkipEmptyParts);
             if(list2.size()>1){
                 QString aw2=list2.at(1).toLocal8Bit().constData();
                 QStringList list3 = aw2.split(":",QString::SkipEmptyParts);
@@ -31,7 +33,8 @@ void Administrador::getStrings(int inicio,int limite){
                 track.genero="No encontrado";
             }tracks.push_back(track);
         }j++;
-    }read_directory(inicio,limite);
+    }
+    read_directory(inicio,limite);
 }
 void Administrador::read_directory(int inicio,int limite){
     DIR* dirp = opendir("/home/aldo/Escritorio/Canciones");

@@ -1,37 +1,111 @@
 #include <iostream>
+#include <sstream>
+#include <fstream>
 #include <string>
+#include <vector>
+#include "sys/types.h"
+#include "sys/sysinfo.h"
+#include <math.h>
+
+
 using namespace std;
-#include <stdio.h>
-//int main(){
-//    int arr[] = {10, 20, 30, 40, 50, 60};
-//    int *ptr1 = arr;
-//    int *ptr2 = arr + 5;
-//    //printf("Number of elements between two pointer are: %d.",(ptr2 - ptr1));
-//    //printf("Number of bytes between two pointers are: %d",(char*)ptr2 - (char*) ptr1);//5*sizeof(int)/sizeof(char)
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    char *ptr = "GeeksQuiz";
-//    cout<<*(ptr+3);
-//}
-void swap(int *px, int *py){
-    *px = *px - *py;
-    *py = *px + *py;
-    *px = *py - *px;
+
+struct sysinfo memInfo;
+struct musica
+{
+    std::string track_id;
+    std::string track_title;
+    std::string artist_name;
+    std::string track_duration;
+    std::string track_path;
+};
+
+int main() {
+    sysinfo (&memInfo);
+    long long totalVirtualMem;
+    vector<musica> tracks;
+    vector<std::string> id_tracks;
+    int linea = 0;
+    int columna = 1;
+    int cont = 0;
+    int aux = cont;
+    std::string path("/home/gretchell/Downloads/fma_small/");
+    std::ifstream data("/home/gretchell/Downloads/fma_metadata/raw_tracks.csv");
+    std::ifstream data_1("/home/gretchell/Downloads/fma_small/checksums");
+    std::string line;
+    std::string line_1;
+    while (std::getline(data_1,line_1)){
+        id_tracks.push_back(line_1.substr(42));
+    }
+
+    std::cout << id_tracks.size() << std::endl;
+
+    while(std::getline(data,line)) {
+
+
+        totalVirtualMem = memInfo.totalram - memInfo.freeram;
+        totalVirtualMem += memInfo.totalswap - memInfo.freeswap;
+        totalVirtualMem *= memInfo.mem_unit;
+        double memory = (double) totalVirtualMem;
+        memory /= pow(10.0, 9.0);
+
+        std::cout << memory << std::endl;
+
+        musica track;
+        std::stringstream lineStream(line);
+        std::string cell;
+        linea++;
+        while(std::getline(lineStream,cell, ',')) {
+            if (linea == 1) {
+                linea++;
+                break;
+            }
+            else if (cont != 0) {
+                cont++;
+                if (cell.find("/'}]") != cell.npos) {
+                    cont--;
+                    aux = cont;
+                    cont = 0;
+                }
+            }
+            else if (columna == 1) {
+                track.track_id = cell;
+            }
+            else if (columna == 6) {
+                track.artist_name = cell;
+            }
+            else if (columna == 23){
+                track.track_duration = cell;
+            }
+            else if (columna == 28){
+                cont++;
+            }
+            else if (columna == 38 + aux){
+                track.track_title = cell;
+            }
+            else if (columna == 40 + aux){
+                break;
+            }
+            columna++;
+        }
+        columna = 1;
+        if(track.track_title != "" || track.artist_name != "" || track.track_duration != ""){
+            try {
+                std::stoi(track.track_id);
+            }catch (exception& e)
+            {
+                track.track_id = "-1";
+            }
+            if(std::stoi(track.track_id)>std::stoi(id_tracks[0].substr(4,6))){
+                id_tracks.erase(id_tracks.begin());
+            }
+            if ( std::stoi(id_tracks[0].substr(4,6)) == std::stoi(track.track_id) ){
+                track.track_path = path + id_tracks[0];
+                tracks.push_back(track);
+                std::cout << "ID: " + track.track_id + "; Titulo: " + track.track_title + "; Name: " + track.artist_name + "; Duration: " + track.track_duration  + "; Path: " + track.track_path << std::endl;
+                id_tracks.erase(id_tracks.begin());
+            }
+        }
+    }
 }
-int f(int x, int *py, int **ppz){
-    int y, z;
-    **ppz += 1;//**pz=5
-    z = **ppz;//z=5 *py=5
-    *py += 2;//*py=7
-    y = *py;//y=7
-    x += 3;//x=7
-    return x + y + z;//5+6+7
-}
-int main(){
-    int c, *b, **a;
-    c = 4;
-    b = &c;//*b=4
-    a = &b;//**a=4
-    //cout<<**a;
-    printf("%d ", f(c, b, a));
-    return 0;
-}
+

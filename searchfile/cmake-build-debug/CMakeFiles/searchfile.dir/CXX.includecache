@@ -6,11 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/home/aldo/Documentos/Proyecto 1/searchfile/main.cpp
+/home/gretchell/CLionProjects/searchfile/main.cpp
 iostream
+-
+sstream
+-
+fstream
 -
 string
 -
-stdio.h
+vector
+-
+sys/types.h
+/home/gretchell/CLionProjects/searchfile/sys/types.h
+sys/sysinfo.h
+/home/gretchell/CLionProjects/searchfile/sys/sysinfo.h
+math.h
 -
 

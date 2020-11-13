@@ -43,10 +43,11 @@ public:
     vector<musica> tracks;
 
     Administrador();
+    void read_directory(int inicio,int limite);
     void getStrings(int inicio,int limite);
     void doMath(int pivote, int modo);
     void resetData(int limite);
-    void read_directory(int inicio,int limite);
+    string getRutaCancion(string id_cancion);
 };
 
 #endif // ADMINISTRADOR_H

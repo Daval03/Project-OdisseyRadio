@@ -6,20 +6,15 @@
 #include "sys/types.h"
 #include "sys/sysinfo.h"
 #include <math.h>
-
-
 using namespace std;
-
 struct sysinfo memInfo;
-struct musica
-{
+struct musica{
     std::string track_id;
     std::string track_title;
     std::string artist_name;
     std::string track_duration;
     std::string track_path;
 };
-
 int main() {
     sysinfo (&memInfo);
     long long totalVirtualMem;
@@ -29,9 +24,9 @@ int main() {
     int columna = 1;
     int cont = 0;
     int aux = cont;
-    std::string path("/home/gretchell/Downloads/fma_small/");
-    std::ifstream data("/home/gretchell/Downloads/fma_metadata/raw_tracks.csv");
-    std::ifstream data_1("/home/gretchell/Downloads/fma_small/checksums");
+    std::string path("/home/aldo/Descargas/metadata/");
+    std::ifstream data("/home/aldo/Descargas/metadata/raw_tracks.csv");
+    std::ifstream data_1("/home/aldo/Descargas/metadata/checksums");
     std::string line;
     std::string line_1;
     while (std::getline(data_1,line_1)){
@@ -108,4 +103,3 @@ int main() {
         }
     }
 }
-

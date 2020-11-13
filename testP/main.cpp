@@ -10,12 +10,21 @@ int main(int argc, char *argv[]){
 //#include <QMessageBox>
 //#include <administrador.h>
 //#include <QDebug>
+//using namespace std;
+
 //int main(){
 //    Administrador *admi=new Administrador();
 //    admi->getStrings(0,30);
-    //cout<<" ";
-    //cout<<admi->tracks.size();
-//}
+
+//    QString res;
+//    int a=6-3;
+//    for(int i=0;i<a;i++){//000002.mp3
+//        res.append("0");
+//    }res.append("123.mp3");
+//    qDebug()<< res;
+//    cout<<" ";
+//    cout<<admi->tracks.size();
+
 //    cout<<" ";
 //    cout<<admi->tracks[29].ruta_cancion;
 //    admi->resetData(620);

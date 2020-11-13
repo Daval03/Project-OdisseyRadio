@@ -12,6 +12,9 @@ void Administrador::getStrings(int inicio,int limite){
             int largo=list.size();
 
             musica track;
+
+            //track.ruta_cancion=getRutaCancion(list.at(0).toLocal8Bit().constData());
+
             track.idioma="en";
             track.track_interest=list.at(largo-6).toLocal8Bit().constData();
             track.album_name=list.at(2).toLocal8Bit().constData();
@@ -47,6 +50,14 @@ void Administrador::read_directory(int inicio,int limite){
             h++;
         }i++;
     }closedir(dirp);
+}
+string Administrador::getRutaCancion(string id_cancion){
+      QString ceros;
+      int digitos=6-id_cancion.length();
+      for(int i=0;i<digitos;i++){
+          ceros.append("0");
+      }ceros.append(QString::fromStdString(id_cancion)+".mp3");
+      return ceros.toLocal8Bit().constData();
 }
 void Administrador::resetData(int modo){
     this->j=1;

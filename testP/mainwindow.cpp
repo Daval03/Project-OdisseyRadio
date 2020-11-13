@@ -74,6 +74,7 @@ void MainWindow::meterInfo(vector<musica> tracks, int inicio, int limite){
 }
 
 void MainWindow::mostrar(QString file,musica cancion){
+
     mMediaPlayer->setMedia(QUrl::fromLocalFile(file));
     ui->label_2->setText(QString::fromStdString(cancion.track_title));
     this->res=makeString(cancion);

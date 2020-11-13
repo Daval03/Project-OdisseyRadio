@@ -23,4 +23,6 @@ sys/sysinfo.h
 /home/gretchell/CLionProjects/searchfile/sys/sysinfo.h
 math.h
 -
+stdio.h
+-
 
